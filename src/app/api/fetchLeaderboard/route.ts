@@ -8,5 +8,10 @@ export async function GET(req: NextRequest) {
     orderBy: { score: "desc" },
   });
   console.log(data);
-  return NextResponse.json({ data }, { status: 200 });
+  const response = NextResponse.json({ data }, { status: 200 });
+  response.headers.set(
+    "Cache-Control",
+    "no-cache, no-store, max-age=0, must-revalidate"
+  );
+  return response;
 }

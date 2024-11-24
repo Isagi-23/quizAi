@@ -27,7 +27,7 @@ export const Confetti = () => {
       height={windowDimension.height}
       recycle={false}
       numberOfPieces={200}
-      gravity={0.1}
+      gravity={0.5}
     />
   );
 };
