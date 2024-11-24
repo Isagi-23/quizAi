@@ -4,7 +4,7 @@ import dailoqa from "@/public/images/Dailoqa_01.jpg";
 
 const Header = () => {
   return (
-    <header className="sm:px-10 container mx-auto px-4 py-6 flex justify-between items-center">
+    <header className="sm:px-10 container mx-auto md:px-4 px-14 py-6 flex justify-between items-center">
       <div
         className="flex items-center space-x-2 cursor-pointer"
         onClick={() => (window.location.href = "/")}

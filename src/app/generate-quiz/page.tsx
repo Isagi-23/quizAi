@@ -187,7 +187,7 @@ export default function Home() {
             </Card>
           </motion.div>
           <div className="col-span-2"></div>
-          <div className="flex flex-col col-span-4 justify-end mr-10">
+          <div className="flex flex-col col-span-4 justify-end md:mr-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

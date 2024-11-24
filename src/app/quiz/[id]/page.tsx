@@ -239,7 +239,7 @@ export default function QuizPage() {
 
   if (quizFinished) {
     return (
-      <div className="relative h-screen">
+      <div className="relative h-screen mt-6">
         <div className="absolute inset-0 -z-10">
           <Image
             src={quizBg}
@@ -288,7 +288,7 @@ export default function QuizPage() {
               <Leaderboard id={id} />
             </CardContent>
             <CardFooter className="flex justify-center">
-              <Button onClick={() => router.push("/quiz")} size="lg">
+              <Button onClick={() => router.push("/generate-quiz")} size="lg">
                 Back to Home
               </Button>
             </CardFooter>
@@ -300,7 +300,7 @@ export default function QuizPage() {
 
   if (currentQuestion === 0 && !quizFinished) {
     return (
-      <div className="relative h-screen">
+      <div className="relative h-screen ">
         <div className="absolute inset-0 -z-10">
           <Image
             src={quizBg}
@@ -314,8 +314,8 @@ export default function QuizPage() {
           {/* Optional overlay */}
         </div>
 
-        <div className="container mx-auto p-4 h-screen flex items-center justify-center -mt-10">
-          <Card className="w-full max-w-md">
+        <div className="container mx-auto p-4 h-screen flex items-center justify-center mt-6">
+          <Card className="w-full max-w-md -mt-10">
             <CardHeader>
               <CardTitle className="text-2xl text-center">
                 Welcome to the Quiz!
