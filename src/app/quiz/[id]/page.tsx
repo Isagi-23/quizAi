@@ -20,7 +20,7 @@ import { Confetti } from "@/components/Confetti";
 import axios from "axios";
 import Image from "next/image";
 import quizBg from "@/public/images/illustrated-rendering-twin-avatar.jpg";
-import quizBg1 from "@/public/images/close-up-character-composed-futuristic-scifi-luminous-particles.jpg"
+import quizBg1 from "@/public/images/close-up-character-composed-futuristic-scifi-luminous-particles.jpg";
 
 interface Question {
   question: string;
@@ -288,7 +288,7 @@ export default function QuizPage() {
               <Leaderboard id={id} />
             </CardContent>
             <CardFooter className="flex justify-center">
-              <Button onClick={() => router.push("/")} size="lg">
+              <Button onClick={() => router.push("/quiz")} size="lg">
                 Back to Home
               </Button>
             </CardFooter>

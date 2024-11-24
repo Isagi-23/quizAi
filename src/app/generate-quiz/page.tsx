@@ -71,7 +71,9 @@ export default function Home() {
 
   const copyToClipboard = async (url: string, id: string) => {
     try {
-      await navigator.clipboard.writeText(`${window.location.origin}/quiz/${id}`);
+      await navigator.clipboard.writeText(
+        `${window.location.origin}/quiz/${id}`
+      );
       console.log("Copied:", `${window.location.origin}/quiz/${id}`, id);
       setCopiedId(id);
       // toast({
@@ -108,7 +110,7 @@ export default function Home() {
 
       {/* Content goes here */}
       <div className="relative z-10 ">
-        <div className="container mx-auto max-w-6xl relative z-10 md:grid md:grid-flow-row md:grid-cols-12 gap-4 mt-6">
+        <div className="  relative z-10 md:grid md:grid-flow-row md:grid-cols-12 gap-10 mt-6">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -184,85 +186,89 @@ export default function Home() {
               </CardFooter>
             </Card>
           </motion.div>
+          <div className="col-span-2"></div>
+          <div className="flex flex-col col-span-4 justify-end mr-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 md:mt-10 w-full max-w-md mx-auto col-span-3"
+            >
+              <Card className="backdrop-blur-md bg-background/90">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold text-center">
+                    Suggested Topics
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {suggestedTopics.map((suggestedTopic) => (
+                      <motion.div
+                        key={suggestedTopic}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Button
+                          variant="outline"
+                          onClick={() => setTopic(suggestedTopic)}
+                          className="transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+                        >
+                          {suggestedTopic}
+                        </Button>
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-8 md:mt-10 w-full max-w-md mx-auto col-span-3"
-          >
-            <Card className="backdrop-blur-md bg-background/90">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold text-center">
-                  Suggested Topics
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {suggestedTopics.map((suggestedTopic) => (
-                    <motion.div
-                      key={suggestedTopic}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Button
-                        variant="outline"
-                        onClick={() => setTopic(suggestedTopic)}
-                        className="transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-8 md:mt-10 w-full max-w-md mx-auto col-span-3"
+            >
+              <Card className="backdrop-blur-md bg-background/90 ">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold">
+                    Recent Quizzes
+                  </CardTitle>
+                  <CardDescription>
+                    Your recently created quizzes
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {recentQuizzes.map((quiz: any) => (
+                      <div
+                        key={quiz.id}
+                        className="flex items-center justify-between p-3 rounded-lg border bg-card"
                       >
-                        {suggestedTopic}
-                      </Button>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 md:mt-10 w-full max-w-md mx-auto col-span-3"
-          >
-            <Card className="backdrop-blur-md bg-background/90 ">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold">
-                  Recent Quizzes
-                </CardTitle>
-                <CardDescription>Your recently created quizzes</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {recentQuizzes.map((quiz: any) => (
-                    <div
-                      key={quiz.id}
-                      className="flex items-center justify-between p-3 rounded-lg border bg-card"
-                    >
-                      <Button
-                        variant="ghost"
-                        onClick={() => router.push(`/quiz/${quiz.id}`)}
-                      >
-                        <span className="font-medium">{quiz.topic}</span>
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => copyToClipboard(quiz.url, quiz.id)}
-                      >
-                        {copiedId === quiz.id ? (
-                          <Check className="h-4 w-4" />
-                        ) : (
-                          <Copy className="h-4 w-4" />
-                        )}
-                        <span className="sr-only">Copy link</span>
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+                        <Button
+                          variant="ghost"
+                          onClick={() => router.push(`/quiz/${quiz.id}`)}
+                        >
+                          <span className="font-medium">{quiz.topic}</span>
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => copyToClipboard(quiz.url, quiz.id)}
+                        >
+                          {copiedId === quiz.id ? (
+                            <Check className="h-4 w-4" />
+                          ) : (
+                            <Copy className="h-4 w-4" />
+                          )}
+                          <span className="sr-only">Copy link</span>
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
