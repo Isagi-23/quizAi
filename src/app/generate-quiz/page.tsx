@@ -88,6 +88,7 @@ export default function Home() {
   const fetchQuizes = async () => {
     try {
       const response = await axios.get("/api/fetchQuizes");
+      console.log("quiz fetched");
       console.log(response.data);
       setRecentQuizzes(response.data.data.slice(0, 3));
     } catch (error) {
