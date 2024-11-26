@@ -8,7 +8,7 @@ const nextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "no-store", // Prevent caching for dynamic API responses
+            value: "no-store, no-cache, must-revalidate", // Prevent caching for dynamic API responses
           },
         ],
       },
